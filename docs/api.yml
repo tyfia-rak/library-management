@@ -130,6 +130,29 @@ paths:
                 properties:
                   message:
                     type: string
+  /books/{bookId}/authors/{authorId}:
+    put:
+      summary: update author's book
+      parameters:
+        - in: path
+          name: bookId
+          required: true
+          schema:
+            type: integer
+            format: int64
+          description: ID book to update
+        - in: path
+          name: authorId
+          required: true
+          schema:
+            type: integer
+            format: int64
+          description: New Id author
+      responses:
+        '200':
+          description: Successfully
+        '404':
+          description: Book not found
 components:
   schemas:
     Book:
