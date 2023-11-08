@@ -153,6 +153,31 @@ paths:
           description: Successfully
         '404':
           description: Book not found
+  /books/authors:
+    put:
+      summary: Update authors for multiple books
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  bookId:
+                    type: integer
+                    format: int64
+                    description: The ID of the book to update
+                  authorId:
+                    type: integer
+                    format: int64
+                    description: The ID of the new author
+                required:
+                  - bookId
+                  - authorId
+      responses:
+        '200':
+          description: Update successful
 components:
   schemas:
     Book:
