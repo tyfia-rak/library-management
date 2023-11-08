@@ -234,6 +234,25 @@ components:
         releaseDate:
           type: string
           format: date
+    DefaultResponse:
+      type: object
+      properties:
+        status:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
+        body:
+          type: object
+    Response200:
+      allOf:
+        - $ref: '#/components/schemas/DefaultResponse'
+        - type: object
+          properties:
+            body:
+              type: object
   parameters:
     queryPagination:
       in: query
