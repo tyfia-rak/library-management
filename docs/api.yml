@@ -346,6 +346,10 @@ components:
         - topic
         - releaseDate
         - idAuthor
+    ImportData:
+      oneOf:
+        - $ref: '#/components/schemas/ImportAuthor'
+        - $ref: '#/components/schemas/ImportBook'
   parameters:
     queryPagination:
       in: query
