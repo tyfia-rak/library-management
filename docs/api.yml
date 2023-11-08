@@ -209,6 +209,8 @@ paths:
                 file:
                   type: string
                   format: binary
+                data:
+                  $ref: '#/components/schemas/ImportData'
       responses:
         200:
           description: List of imported books
@@ -234,6 +236,8 @@ paths:
                 file:
                   type: string
                   format: binary
+                data:
+                  $ref: '#/components/schemas/ImportData'
       responses:
         200:
           description: List of imported authors
