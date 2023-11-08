@@ -193,6 +193,56 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Response200'
+  /books/import:
+    post:
+      tags:
+        - Books
+      summary: Import books from file
+      operationId: importBooks
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        200:
+          description: List of imported books
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+  /authors/import:
+    post:
+      tags:
+        - Authors
+      summary: Import authors from file
+      operationId: importAuthors
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        200:
+          description: List of imported authors
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Author'
 components:
   schemas:
     Book:
