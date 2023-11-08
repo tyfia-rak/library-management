@@ -52,9 +52,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Book'
+                $ref: '#/components/schemas/Response200'
     put:
       tags:
         - Books
@@ -73,9 +71,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Book'
+                $ref: '#/components/schemas/Response200'
   /authors:
     get:
       tags:
@@ -104,9 +100,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Author'
+                $ref: '#/components/schemas/Response200'
     put:
       tags:
         - Authors
@@ -123,7 +117,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Author'
+                $ref: '#/components/schemas/Response200'
     delete:
       tags:
         - Authors
@@ -142,10 +136,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  message:
-                    type: string
+                $ref: '#/components/schemas/Response200'
   /books/{bookId}/authors/{authorId}:
     put:
       summary: update author's book
@@ -167,6 +158,10 @@ paths:
       responses:
         '200':
           description: Successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response200'
         '404':
           description: Book not found
   /books/authors:
@@ -194,6 +189,10 @@ paths:
       responses:
         '200':
           description: Update successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response200'
 components:
   schemas:
     Book:
@@ -253,6 +252,11 @@ components:
           properties:
             body:
               type: object
+              properties:
+                error:
+                  type: string
+              example:
+                error: "successfuly Request"
   parameters:
     queryPagination:
       in: query
