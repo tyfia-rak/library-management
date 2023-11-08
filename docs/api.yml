@@ -307,6 +307,45 @@ components:
                   type: string
               example:
                 error: "successfuly Request"
+    ImportAuthor:
+      type: object
+      properties:
+        authorName:
+          type: string
+        sex:
+          type: string
+          enum:
+            - M
+            - F
+      required:
+        - authorName
+        - sex
+
+    ImportBook:
+      type: object
+      properties:
+        bookName:
+          type: string
+        author:
+          type: string
+          description: ID of the author
+        pageNumbers:
+          type: integer
+        topic:
+          type: string
+        releaseDate:
+          type: string
+          format: date
+        idAuthor:
+          type: string
+          description: ID of the author
+      required:
+        - bookName
+        - author
+        - pageNumbers
+        - topic
+        - releaseDate
+        - idAuthor
   parameters:
     queryPagination:
       in: query
