@@ -381,6 +381,26 @@ components:
       oneOf:
         - $ref: '#/components/schemas/ImportAuthor'
         - $ref: '#/components/schemas/ImportBook'
+    Emprunt:
+      type: object
+      properties:
+        id:
+          type: string
+        visitorId:
+          type: string
+          description: ID du visiteur emprunteur
+        bookId:
+          type: string
+          description: ID du livre emprunté
+        dateEmprunt:
+          type: string
+          format: date
+        dateRetourPrevu:
+          type: string
+          format: date
+        dateRetourEffectif:
+          type: string
+          format: date
   parameters:
     queryPagination:
       in: query
