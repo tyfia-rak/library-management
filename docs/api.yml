@@ -186,6 +186,26 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/BookAvailability'
+  /visitors/{visitorId}/borrowings:
+    get:
+      tags:
+        - Visitors
+      summary: Get borrowings for a visitor
+      operationId: getVisitorBorrowings
+      parameters:
+        - in: path
+          name: visitorId
+          required: true
+          schema:
+            type: string
+          description: ID of the visitor
+      responses:
+        200:
+          description: List of borrowed and returned books for the visitor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VisitorBorrowings'
   /books/{bookId}/authors/{authorId}:
     put:
       summary: update author's book
