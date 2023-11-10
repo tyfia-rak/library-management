@@ -484,6 +484,29 @@ components:
         borrowerId:
           type: string
           description: ID of the borrower (if the book is borrowed)
+    VisitorBorrowings:
+      type: object
+      properties:
+        visitorId:
+          type: string
+          description: ID of the visitor
+        borrowedBooks:
+          type: array
+          items:
+            type: object
+            properties:
+              bookId:
+                type: string
+                description: ID of the borrowed book
+              dateBorrowed:
+                type: string
+                format: date
+              dueDate:
+                type: string
+                format: date
+              dateReturned:
+                type: string
+                format: date
   parameters:
     queryPagination:
       in: query
