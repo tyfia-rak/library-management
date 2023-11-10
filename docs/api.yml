@@ -273,6 +273,15 @@ components:
           enum:
             - M
             - F
+    Visitor:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        reference:
+          type: string
     CrupdateBook:
       type: object
       properties:
