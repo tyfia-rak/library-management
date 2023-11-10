@@ -17,6 +17,9 @@ paths:
       summary: Get all books
       description: The returned books are ordered by updated datetime.
       operationId: getBooks
+      security:
+        - OAuth2:
+          - read
       parameters:
         - in: query
           name: bookName
@@ -59,6 +62,9 @@ paths:
         - Books
       summary: Create or update a list of books
       operationId: crupdateBooks
+      security:
+        - OAuth2:
+          - manage
       requestBody:
         content:
           application/json:
@@ -80,6 +86,9 @@ paths:
       summary: Get all authors
       description: Get a list of all authors or filter by name.
       operationId: getAuthors
+      security:
+        - OAuth2:
+          - read
       parameters:
         - in: query
           name: authorName
@@ -107,6 +116,9 @@ paths:
         - Authors
       summary: Create or update an author
       operationId: crupdateAuthor
+      security:
+        - OAuth2:
+          - manage
       requestBody:
         content:
           application/json:
@@ -144,6 +156,9 @@ paths:
         - Borrowings
       summary: Borrow a book
       operationId: borrowBook
+      security:
+        - OAuth2:
+          - borrow
       requestBody:
         content:
           application/json:
@@ -162,6 +177,9 @@ paths:
         - Borrowings
       summary: Get list of borrowed books
       operationId: getBorrowedBooks
+      security:
+        - OAuth2:
+          - read
       responses:
         200:
           description: List of borrowed books
@@ -192,6 +210,9 @@ paths:
         - Visitors
       summary: Get borrowings for a visitor within a specified time period
       operationId: getVisitorBorrowingsInTimePeriod
+      security:
+        - OAuth2:
+          - read
       parameters:
         - in: path
           name: visitorId
@@ -223,6 +244,9 @@ paths:
   /books/{bookId}/authors/{authorId}:
     put:
       summary: update author's book
+      security:
+        - OAuth2:
+          - manage
       parameters:
         - in: path
           name: bookId
@@ -250,6 +274,9 @@ paths:
   /books/authors:
     put:
       summary: Update authors for multiple books
+      security:
+        - OAuth2:
+          - manage
       requestBody:
         content:
           application/json:
@@ -333,6 +360,9 @@ paths:
   /emprunts/{empruntId}/return:
     put:
       summary: Return a borrowed book
+      security:
+        - OAuth2:
+          - borrow
       parameters:
         - in: path
           name: empruntId
