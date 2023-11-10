@@ -421,6 +421,18 @@ components:
         dateRetourEffectif:
           type: string
           format: date
+    BookAvailability:
+      type: object
+      properties:
+        bookId:
+          type: string
+          description: ID of the book
+        available:
+          type: boolean
+          description: Indicates if the book is available for borrowing
+        borrowerId:
+          type: string
+          description: ID of the borrower (if the book is borrowed)
   parameters:
     queryPagination:
       in: query
