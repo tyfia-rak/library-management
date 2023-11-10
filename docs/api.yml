@@ -8,6 +8,7 @@ servers:
 tags:
   - name: Books
   - name: Authors
+  - name: Borrowings
 paths:
   /books:
     get:
