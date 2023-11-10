@@ -190,8 +190,8 @@ paths:
     get:
       tags:
         - Visitors
-      summary: Get borrowings for a visitor
-      operationId: getVisitorBorrowings
+      summary: Get borrowings for a visitor within a specified time period
+      operationId: getVisitorBorrowingsInTimePeriod
       parameters:
         - in: path
           name: visitorId
@@ -199,9 +199,23 @@ paths:
           schema:
             type: string
           description: ID of the visitor
+        - in: query
+          name: startDate
+          description: Start date of the time period
+          required: true
+          schema:
+            type: string
+            format: date
+        - in: query
+          name: endDate
+          description: End date of the time period
+          required: true
+          schema:
+            type: string
+            format: date
       responses:
         200:
-          description: List of borrowed and returned books for the visitor
+          description: List of borrowed and returned books for the visitor within the specified time period
           content:
             application/json:
               schema:
