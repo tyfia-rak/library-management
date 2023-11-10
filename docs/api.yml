@@ -156,6 +156,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Response200'
+  /borrowed-books:
+    get:
+      tags:
+        - Borrowings
+      summary: Get list of borrowed books
+      operationId: getBorrowedBooks
+      responses:
+        200:
+          description: List of borrowed books
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BookAvailability'
   /books/{bookId}/authors/{authorId}:
     put:
       summary: update author's book
