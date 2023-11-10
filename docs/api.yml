@@ -137,6 +137,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Response200'
+  /emprunts:
+    post:
+      tags:
+        - Borrowings
+      summary: Borrow a book
+      operationId: borrowBook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Emprunt'
+      responses:
+        200:
+          description: Borrowing recorded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response200'
   /books/{bookId}/authors/{authorId}:
     put:
       summary: update author's book
