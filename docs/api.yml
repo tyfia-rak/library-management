@@ -439,17 +439,17 @@ components:
           type: string
         visitorId:
           type: string
-          description: ID du visiteur emprunteur
+          description: ID of the borrowing visitor
         bookId:
           type: string
-          description: ID du livre emprunté
-        dateEmprunt:
+          description: ID of the borrowed book
+        dateBorrowed:
           type: string
           format: date
-        dateRetourPrevu:
+        dueDate:
           type: string
           format: date
-        dateRetourEffectif:
+        dateReturned:
           type: string
           format: date
     BookAvailability:
