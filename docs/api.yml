@@ -504,6 +504,14 @@ components:
         visitorId:
           type: string
           description: ID of the visitor
+        startDate:
+          type: string
+          format: date
+          description: Start date of the time period
+        endDate:
+          type: string
+          format: date
+          description: End date of the time period
         borrowedBooks:
           type: array
           items:
