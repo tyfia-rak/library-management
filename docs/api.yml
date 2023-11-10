@@ -247,6 +247,35 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Author'
+  /emprunts/{empruntId}/return:
+    put:
+      summary: Return a borrowed book
+      parameters:
+        - in: path
+          name: empruntId
+          required: true
+          schema:
+            type: string
+          description: ID of the borrowing to return
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dateReturned:
+                  type: string
+                  format: date
+                  description: Actual return date of the book
+      responses:
+        200:
+          description: Return recorded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response200'
+        404:
+          description: Borrowing not found
 components:
   schemas:
     Book:
@@ -273,15 +302,6 @@ components:
           enum:
             - M
             - F
-    Visitor:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        reference:
-          type: string
     CrupdateBook:
       type: object
       properties:
