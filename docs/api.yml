@@ -202,13 +202,16 @@ paths:
       requestBody:
         required: true
         content:
-          multipart/form-data:
+          application/json:
             schema:
               type: object
               properties:
-                file:
-                  type: string
-                  format: binary
+                data:
+                  $ref: '#/components/schemas/ImportData'
+          application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+            schema:
+              type: object
+              properties:
                 data:
                   $ref: '#/components/schemas/ImportData'
       responses:
@@ -229,13 +232,16 @@ paths:
       requestBody:
         required: true
         content:
-          multipart/form-data:
+          application/json:
             schema:
               type: object
               properties:
-                file:
-                  type: string
-                  format: binary
+                data:
+                  $ref: '#/components/schemas/ImportData'
+          application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+            schema:
+              type: object
+              properties:
                 data:
                   $ref: '#/components/schemas/ImportData'
       responses:
