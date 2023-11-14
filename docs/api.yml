@@ -42,11 +42,13 @@ paths:
         - $ref: '#/components/parameters/PageSize'
       responses:
         200:
-          description: The list of filtered books
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Response200'
+          $ref: '#/components/responses/BookList-200'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        500:
+          $ref: '#/components/responses/500'        
     put:
       tags:
         - Books
@@ -61,11 +63,13 @@ paths:
                 $ref: '#/components/schemas/Book'
       responses:
         200:
-          description: The list of created or updated books
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Response200'
+          $ref: '#/components/responses/BookList-200'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        500:
+          $ref: '#/components/responses/500'
   /authors:
     get:
       tags:
@@ -84,11 +88,13 @@ paths:
         - $ref: '#/components/parameters/PageSize'
       responses:
         200:
-          description: The list of authors
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Response200'
+          $ref: '#/components/responses/BookList-200'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        500:
+          $ref: '#/components/responses/500'
     put:
       tags:
         - Authors
@@ -101,11 +107,13 @@ paths:
               $ref: '#/components/schemas/Author'
       responses:
         200:
-          description: The created or updated author
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Response200'
+          $ref: '#/components/responses/BookList-200'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        500:
+          $ref: '#/components/responses/500'
     delete:
       tags:
         - Authors
@@ -120,11 +128,13 @@ paths:
             type: string
       responses:
         200:
-          description: Author deleted successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Response200'
+          $ref: '#/components/responses/BookList-200'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        500:
+          $ref: '#/components/responses/500'
   /books/{bookId}/authors/{authorId}:
     put:
       summary: update author's book
@@ -144,14 +154,14 @@ paths:
             format: int64
           description: New Id author
       responses:
-        '200':
-          description: Successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Response200'
-        '404':
-          description: Book not found
+        200:
+          $ref: '#/components/responses/BookList-200'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        500:
+          $ref: '#/components/responses/500'
   /books/authors:
     put:
       summary: Update authors for multiple books
@@ -175,12 +185,14 @@ paths:
                   - bookId
                   - authorId
       responses:
-        '200':
-          description: Update successful
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Response200'
+        200:
+          $ref: '#/components/responses/BookList-200'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        500:
+          $ref: '#/components/responses/500'
   /books/import:
     post:
       tags:
@@ -201,13 +213,13 @@ paths:
                   $ref: '#/components/schemas/ImportData'
       responses:
         200:
-          description: List of imported books
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Book'
+          $ref: '#/components/responses/BookList-200'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        500:
+          $ref: '#/components/responses/500'
   /authors/import:
     post:
       tags:
@@ -228,13 +240,13 @@ paths:
                   $ref: '#/components/schemas/ImportData'
       responses:
         200:
-          description: List of imported authors
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Author'
+          $ref: '#/components/responses/BookList-200'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        500:
+          $ref: '#/components/responses/500'
 components:
   schemas:
     Book:
@@ -283,22 +295,27 @@ components:
           properties:
             code:
               type: integer
+              example: 200
             message:
               type: string
         body:
           type: object
-    Response200:
+    BadRequestBody:
       allOf:
         - $ref: '#/components/schemas/DefaultResponse'
-        - type: object
-          properties:
+      example:
+        status:
+          code: 400
+          message: Bad Request
+        body: { }
+    BookListBody:
+      allOf:
+        - $ref: '#/components/schemas/DefaultResponse'
+        - properties:
             body:
-              type: object
-              properties:
-                error:
-                  type: string
-              example:
-                error: "successfuly Request"
+              type: array
+              items:
+                $ref: '#/components/schemas/Book'
     ImportAuthor:
       type: object
       properties:
@@ -342,6 +359,31 @@ components:
       oneOf:
         - $ref: '#/components/schemas/ImportAuthor'
         - $ref: '#/components/schemas/ImportBook'
+  responses:
+    BookList-200:
+      description: list of books
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BookListBody'
+    400:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestBody'
+    403:
+      description: Forbiden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestBody'
+    500:
+      description: Internal server
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestBody'
   parameters:
     Page:
       in: query
